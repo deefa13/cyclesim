@@ -273,7 +273,7 @@ void PWRReceiver::Close()
 ////////////////////////////////////////////////////////////////////////////////
 // Start
 //
-// Starts the Demo
+// Starts the receiver
 //
 ////////////////////////////////////////////////////////////////////////////////
 void PWRReceiver::Start()
@@ -948,7 +948,33 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 			// If the user wants to see the decoded information
 			if (bProcessedData)
 			{
-				// PWR data, common to all data pages and device types
+				//Check Data Page Number type, if 0x10 then power message if 0x13 then torque effectiveness and pedal smoothness data
+				
+				USHORT ucDataPgeNo = ((USHORT)stMessage.aucData[ucDataOffset + 0]);
+				if (ucDataPgeNo == 16) //pwr data
+				{
+					// PWR data, common to all data pages and device types
+
+					UCHAR ucECount = stMessage.aucData[ucDataOffset + 1]; //Confirmed
+					UCHAR ucPedalPower = stMessage.aucData[ucDataOffset + 2];
+					UCHAR ucCadence = stMessage.aucData[ucDataOffset + 3]; //Confirmed
+					USHORT ucAccPWRLSB = ((USHORT)stMessage.aucData[ucDataOffset + 4]);
+					USHORT ucAccPWRMSB = ((USHORT)stMessage.aucData[ucDataOffset + 5] << 8);
+					USHORT ucAccPwr = ((USHORT)ucAccPWRLSB) + ((USHORT)ucAccPWRMSB);
+					USHORT ucInstPwrLSB = ((USHORT)stMessage.aucData[ucDataOffset + 6]);
+					USHORT ucInstPwrMSB = ((USHORT)stMessage.aucData[ucDataOffset + 7] << 8);
+					USHORT ucInstPwr = ((USHORT)ucInstPwrLSB) + ((USHORT)ucInstPwrMSB);
+
+					printf("\n Test: %d", stMessage.aucData[ucDataOffset + 13]);
+					printf("\nData Page No: %d , Event Count: %d , Pedal Power: %d %, Cadence: %d rpm", ucDataPgeNo, ucECount, ucPedalPower, ucCadence);
+					printf("\nAccumulated PWR: %d Watts", ucAccPwr);
+					printf("\nInstantaneous PWR: %d Watts\n", ucInstPwr);
+				}
+				else
+				{
+					printf("\nTorque effectiveness and pedal smoothness message\n");
+				}
+
 
 				//Legacy HRM example data
 				// Merge the 2 bytes to form the HRM event time
@@ -957,19 +983,6 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 				UCHAR ucHR = stMessage.aucData[ucDataOffset + 7];
 				UCHAR ucBeatCount = stMessage.aucData[ucDataOffset + 6];
 				//Delete^^^
-
-				UCHAR ucDataPgeNo = stMessage.aucData[ucDataOffset + 0];
-				UCHAR ucECount = stMessage.aucData[ucDataOffset + 1];
-				UCHAR ucPedalPower = stMessage.aucData[ucDataOffset + 2];
-				UCHAR ucCadence = stMessage.aucData[ucDataOffset + 3];
-				UCHAR ucAccPWRLSB = stMessage.aucData[ucDataOffset + 4];
-				UCHAR ucAccPWRMSB = stMessage.aucData[ucDataOffset + 5];
-				UCHAR ucInstPwrLSB = stMessage.aucData[ucDataOffset + 6];
-				UCHAR ucInstPwrMSB = stMessage.aucData[ucDataOffset + 7];
-
-				printf("\nData Page No: %d , Event Count: %d , Pedal Power: %d %, Cadence: %d rpm", ucDataPgeNo, ucECount, ucPedalPower, ucCadence);
-				printf("\nAccumulated PWR LSB: %d W MSB: %d W", ucAccPWRLSB, ucAccPWRMSB);
-				printf("\nInstantaneous PWR LSB: %d W MSB: %d W\n", ucInstPwrLSB, ucInstPwrMSB);
 
 				if (ucDeviceType == CURRENT_DEVICE)
 				{
