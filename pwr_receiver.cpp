@@ -7,6 +7,8 @@ Copyright (c) Dynastream Innovations Inc. 2016
 All rights reserved.
 */
 #include "pwr_receiver.h"
+#include "calculator.h"
+#include <cstdio>
 
 ////////////////////////////////////////////////////////////////////////////////
 // ANT+ Power Receiver component
@@ -965,10 +967,20 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 					USHORT ucInstPwrMSB = ((USHORT)stMessage.aucData[ucDataOffset + 7] << 8);
 					USHORT ucInstPwr = ((USHORT)ucInstPwrLSB) + ((USHORT)ucInstPwrMSB);
 
+					Calculator calc;
+
+					float density = calc.density(293, 0);
+					float rollingFriction = calc.rollingFriction(8, 80, 0);
+					float varA = calc.varA(0, 0.1, rollingFriction, density, (FLOAT)ucInstPwr);
+					float varB = calc.varB(0, 0.1, rollingFriction, density);
+					float speed = calc.speed(varA, varB, 0, 0.1, density);
+										
 					printf("\n Test: %d", stMessage.aucData[ucDataOffset + 13]);
 					printf("\nData Page No: %d , Event Count: %d , Pedal Power: %d %, Cadence: %d rpm", ucDataPgeNo, ucECount, ucPedalPower, ucCadence);
 					printf("\nAccumulated PWR: %d Watts", ucAccPwr);
 					printf("\nInstantaneous PWR: %d Watts\n", ucInstPwr);
+					printf("*****************SPEED:  %f \n", speed);
+									
 				}
 				else
 				{
