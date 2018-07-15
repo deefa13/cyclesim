@@ -44,13 +44,13 @@ All rights reserved.
 #define USER_NETWORK_KEY      {0xB9, 0xA5, 0x21, 0xFB, 0xBD, 0x72, 0xC3, 0x45} // ANT+ network key
 #define USER_RADIOFREQ        (57) // ANT+ spec
 #define USER_TRANSTYPE        (0) // Wildcarded for pairing (default)
-#define USER_DEVICETYPE       (120) // ANT+ HRM
+#define USER_DEVICETYPE       (11) // ANT+ Power Meter
 #define USER_DEVICENUM        (0) // Wildcarded for pairing (default)
 #define MESSAGE_TIMEOUT       (12) // = 12*2.5 = 30 seconds
 #define USER_NETWORK_NUM      (0) // The network key is assigned to this network number (default)
 
 // Permitted ANT+ HRM Message periods
-#define USER_MESSAGE_PERIODS    {(USHORT)8070, (USHORT)16140, (USHORT)32280}
+#define USER_MESSAGE_PERIODS    {(USHORT)8182, (USHORT)32768}
 
 // Indexes into message recieved from ANT
 #define MESSAGE_BUFFER_DATA1_INDEX ((UCHAR) 0)
@@ -87,6 +87,7 @@ private:
 
 	// Listens for a response from the module
 	void MessageThread();
+
 	// Decodes the received message
 	void ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_);
 

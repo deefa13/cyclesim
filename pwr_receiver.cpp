@@ -580,7 +580,7 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 				printf("Error assigning Message Period: Code 0%d\n", stMessage.aucData[2]);
 				break;
 			}
-			printf("Message period assigned\n");
+			printf("Message period assigned \n");
 			printf("Opening channel...\n");
 			bBroadcasting = TRUE;
 			bStatus = pclMessageObject->OpenChannel(ucAntChannel, MESSAGE_TIMEOUT);
@@ -595,7 +595,7 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 				bBroadcasting = FALSE;
 				break;
 			}
-			printf("Chanel opened\n");
+			printf("Channel opened\n");
 #if defined (ENABLE_EXTENDED_MESSAGES)
 			printf("Enabling extended messages...\n");
 			pclMessageObject->RxExtMesgsEnable(TRUE);
@@ -948,16 +948,28 @@ void PWRReceiver::ProcessMessage(ANT_MESSAGE stMessage, USHORT usSize_)
 			// If the user wants to see the decoded information
 			if (bProcessedData)
 			{
-				// HR data, common to all data pages and device types
+				// PWR data, common to all data pages and device types
 
+				//Legacy HRM example data
 				// Merge the 2 bytes to form the HRM event time
 				USHORT usEventTime = ((USHORT)stMessage.aucData[ucDataOffset + 5] << 8) +
 					(USHORT)stMessage.aucData[ucDataOffset + 4];
 				UCHAR ucHR = stMessage.aucData[ucDataOffset + 7];
 				UCHAR ucBeatCount = stMessage.aucData[ucDataOffset + 6];
+				//Delete^^^
 
-				printf("HR: %d , Beat Count: %d , Beat Event Time: %d\n", ucHR, ucBeatCount, usEventTime);
+				UCHAR ucDataPgeNo = stMessage.aucData[ucDataOffset + 0];
+				UCHAR ucECount = stMessage.aucData[ucDataOffset + 1];
+				UCHAR ucPedalPower = stMessage.aucData[ucDataOffset + 2];
+				UCHAR ucCadence = stMessage.aucData[ucDataOffset + 3];
+				UCHAR ucAccPWRLSB = stMessage.aucData[ucDataOffset + 4];
+				UCHAR ucAccPWRMSB = stMessage.aucData[ucDataOffset + 5];
+				UCHAR ucInstPwrLSB = stMessage.aucData[ucDataOffset + 6];
+				UCHAR ucInstPwrMSB = stMessage.aucData[ucDataOffset + 7];
 
+				printf("\nData Page No: %d , Event Count: %d , Pedal Power: %d %, Cadence: %d rpm", ucDataPgeNo, ucECount, ucPedalPower, ucCadence);
+				printf("\nAccumulated PWR LSB: %d W MSB: %d W", ucAccPWRLSB, ucAccPWRMSB);
+				printf("\nInstantaneous PWR LSB: %d W MSB: %d W\n", ucInstPwrLSB, ucInstPwrMSB);
 
 				if (ucDeviceType == CURRENT_DEVICE)
 				{

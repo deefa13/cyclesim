@@ -5,21 +5,5 @@ c:\coding\repos\cyclesim\pwr_receiver.cpp(298): warning C4473: 'sscanf_s' : not 
   c:\coding\repos\cyclesim\pwr_receiver.cpp(298): note: placeholders and their parameters expect 2 variadic arguments, but 1 were provided
   c:\coding\repos\cyclesim\pwr_receiver.cpp(298): note: the missing variadic argument 2 is required by format string '%c'
   c:\coding\repos\cyclesim\pwr_receiver.cpp(298): note: this argument is used as a buffer size
-ANT_LIB.lib(checksum.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(checksum.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_cm_library.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_cm_library.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_debug.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_debug.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_framer.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_framer.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_framer_ant.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_framer_ant.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_libusb_library.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_libusb_library.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_serial.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_serial.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_serial_generic.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_serial_generic.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_silabs_library.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_silabs_library.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(dsi_thread_win32.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(dsi_thread_win32.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(macros.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(macros.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(usb_device_handle_libusb.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(usb_device_handle_libusb.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(usb_device_handle_si.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(usb_device_handle_si.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(usb_device_handle_win.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(usb_device_handle_win.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(usb_device_libusb.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(usb_device_libusb.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(usb_device_si.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(usb_device_si.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
-ANT_LIB.lib(WinDevice.obj) : warning LNK4099: PDB 'ANT_LIB.pdb' was not found with 'ANT_LIB.lib(WinDevice.obj)' or at 'C:\Coding\repos\cyclesim\Debug\ANT_LIB.pdb'; linking object as if no debug info
+c:\coding\repos\cyclesim\pwr_receiver.cpp(970): warning C4476: 'printf' : unknown type field character ',' in format specifier
   cyclesim.vcxproj -> C:\Coding\repos\cyclesim\Debug\cyclesim.exe
